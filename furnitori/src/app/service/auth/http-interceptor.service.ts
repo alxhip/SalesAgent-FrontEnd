@@ -11,7 +11,6 @@ export class HttpInterceptorService implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const basicAuthHeaderString = this.authenticateUser.getAuthenticatedToken();
     const username = this.authenticateUser.getAuthenticatedUser();
-
     if (basicAuthHeaderString && username) {
       request = request.clone({
         setHeaders: {
@@ -19,6 +18,8 @@ export class HttpInterceptorService implements HttpInterceptor {
         }
       });
     }
+    console.log(request);
+
     return next.handle(request);
   }
 }

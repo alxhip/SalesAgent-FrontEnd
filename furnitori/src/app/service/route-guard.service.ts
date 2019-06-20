@@ -11,9 +11,7 @@ export class RouteGuardService implements CanActivate {
   constructor(private authenticateUserService: AuthenticateUserService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const allowedRoles = route.data.allowedRoles;
-    const isAuthorized = this.authenticateUserService.isAuthorized(allowedRoles);
-    if (this.authenticateUserService.isUserLoggedIn()) {
+    if (this.authenticateUserService.isUserLoggedIn() ) {
       return true;
     }
     this.router.navigate(['login']);

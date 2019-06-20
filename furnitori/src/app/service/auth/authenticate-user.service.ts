@@ -3,14 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { API_URL, AUTHENTICATED_USER, TOKEN, USER_ID, USER_ROLE } from '../../app.constant';
 import { DecodeJWTService } from './decode-jwt.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticateUserService {
 
-  constructor(private http: HttpClient, private decodeJWT: DecodeJWTService, private jwtHelperService: JwtHelperService) { }
+  constructor(private http: HttpClient, private decodeJWT: DecodeJWTService) { }
 
   executeJWTAuthenticationService(username, password) {
 
@@ -63,28 +62,5 @@ export class AuthenticateUserService {
 
   signup(user) {
     return this.http.post(`${API_URL}/api/auth/signup`, user, { responseType: 'text' });
-  }
-
-  isAuthorized(allowedRoles: string[]): boolean {
-    // check if the list of allowed roles is empty, if empty, authorize the user to access the page
-    if (allowedRoles == null || allowedRoles.length === 0) {
-      return true;
-    }
-
-    // get token from local storage or state management
-    const token = sessionStorage.getItem('token');
-
-    // decode token to read the payload details
-    const decodeToken = this.jwtHelperService.decodeToken(token);
-
-    // check if it was decoded successfully, if not the token is not valid, deny access
-    if (!decodeToken) {
-      console.log('Invalid token');
-      return false;
-    }
-
-    // check if the user roles is in the list of allowed roles, return true if allowed and false if not allowed
-    // tslint:disable-next-line: no-string-literal
-    return allowedRoles.includes(decodeToken['role']);
   }
 }

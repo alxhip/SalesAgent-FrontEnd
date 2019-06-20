@@ -22,7 +22,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ClientComponent } from './client/client.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrdersComponent } from './orders/orders.component';
-import { JwtModule } from '@auth0/angular-jwt';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 
 
@@ -38,7 +38,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     SignupComponent,
     ClientComponent,
     OrderDetailsComponent,
-    OrdersComponent
+    OrdersComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +60,6 @@ import { JwtModule } from '@auth0/angular-jwt';
     MatTableModule,
     MatOptionModule,
     MatSelectModule,
-    JwtModule.forRoot({})
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]

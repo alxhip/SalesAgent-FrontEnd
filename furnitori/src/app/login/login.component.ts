@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   authenticateUser() {
+
     this.authenticateService.executeJWTAuthenticationService(this.username, this.password)
       .subscribe(
         data => {
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
           // this.invalidLogin = false
         },
         error => {
+          console.log(error);
+
           this.uiService.showSnackBar('Invalid credentials', null, 4000);
           // this.invalidLogin = true;
         }
