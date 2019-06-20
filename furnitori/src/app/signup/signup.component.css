@@ -1,0 +1,29 @@
+mat-form-field{
+    width:400px !important;
+    margin-left: 35px;
+}
+
+agm-map {
+    height: 500px;
+    width: 500px;
+}
+
+/* .formDiv, .mapDiv{
+    display: inline-block;
+    height: 500px;
+    width: 500px;
+}
+
+.formDiv{
+    margin-top: 0%;
+}
+
+.mapDiv{
+    margin: 5%;
+} */
+
+.container {
+    display:  inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }

@@ -1,0 +1,13 @@
+<div class="clientInfo" *ngFor="let client of clients">
+  <p>{{client.username}}</p>
+  <mat-form-field>
+    <mat-label>Select agent</mat-label>
+    <mat-select (selectionChange)="selected($event)">
+      <mat-option *ngFor="let agent of agents" [value]="agent.id">
+        {{agent.username}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="success" (click)="onAccept()">Accept</button>
+  <button mat-raised-button color="warn" (click)="onDeny($event)">Deny</button>
+</div>

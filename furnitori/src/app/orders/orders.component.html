@@ -1,0 +1,27 @@
+<button *ngIf="userRole==='Client'" mat-raised-button (click)="onNewOrder()">New order</button>
+<div class="component">
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nr.</th>
+                    <th>Order date</th>
+                    <th *ngIf="userRole !=='Client'">Customer</th>
+                    <th>Delivered</th>
+                    <th *ngIf="userRole === 'Agent'">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders">
+                    <td>{{order.id}}</td>
+                    <td>{{order.orderDate|date}}</td>
+                    <td *ngIf="userRole !=='Client'">{{order.user.username}}</td>
+                    <td><i [ngClass]="order.delivered ? 'fa fa-check' : 'fa fa-times'"> </i>
+                    </td>
+                    <td *ngIf="userRole === 'Agent'"><button mat-raised-button [disabled]="order.delivered"
+                            (click)="onDelivered(order)">Delivered</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

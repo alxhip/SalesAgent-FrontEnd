@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>{{selectedJob.title}}</h1>
+  <p>{{selectedJob.description}}</p>
+  <p> <b> Published by: </b> {{jobPublisher}} </p>
+  <p> <b> Published date: </b> {{selectedJob.publishedDate|date}}</p>
+
+  <button (click)="onApply(selectedJob.id)" mat-raised-button color="primary">Apply</button>
+</div>

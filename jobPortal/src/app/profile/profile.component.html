@@ -1,0 +1,42 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h1>Your profile</h1>
+      <div class="form-group">
+        <form (ngSubmit)="profileForm.valid && onSubmit()" [formGroup]="profileForm">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" formControlName="username" id="username">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" formControlName="name" id="name">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" formControlName="email" id="email">
+            <button class="btn btn-success" [disabled]="!profileForm.valid" type="submit">Update</button>
+            <button (click)="onChangePassword()" type="button" class="btn btn-primary">ChangePassword</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<section class="container">
+  <h1>Your profile</h1>
+  <form (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="center center" #f>
+    <mat-form-field>
+      <input type="text" ngModel [(ngModel)]="username" #usernameInput="ngModel" matInput placeholder="Username" name="username" required> 
+      <mat-error *ngIf="usernameInput.hasError('required')">Username is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" ngModel [(ngModel)]="name" #nameInput="ngModel" matInput placeholder="Name" name="name" required>
+      <mat-error *ngIf="nameInput.hasError('required')">Name is required.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="email" ngModel [(ngModel)]="email" #emailInput="ngModel" matInput placeholder="Email" name="email" required email>
+      <mat-error *ngIf="emailInput.hasError('required')">Email is required!</mat-error>
+      <mat-error *ngIf="!emailInput.hasError('required')">Please enter a valid email!</mat-error>
+    </mat-form-field>
+    <div style="margin-top:0.5cm">
+      <button type="submit" color="primary" mat-raised-button>Update</button>
+      <button (click)="onChangePassword()" style="margin-left:20px" type="button"  mat-raised-button>Change password</button>
+    </div>
+  </form>
+</section>

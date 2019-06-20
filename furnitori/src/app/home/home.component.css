@@ -1,0 +1,15 @@
+agm-map {
+    height: 400px;
+}
+
+.supplierDiv, .clientsDiv{
+    display: inline-block;
+}
+
+.supplierDiv{
+    margin: 5%;
+}
+
+.clientsOptions{
+    width: 100px;
+}

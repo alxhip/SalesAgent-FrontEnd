@@ -1,0 +1,36 @@
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]='12'>
+  <ng-component *ngIf="markerSwitch">
+    <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.address.latitude"
+      [longitude]="m.address.longitude">
+
+      <agm-info-window>
+        <strong>{{m.username}}</strong>
+      </agm-info-window>
+
+    </agm-marker>
+  </ng-component>
+  <ng-component *ngIf="!markerSwitch">
+    <agm-direction [origin]="origin" [destination]="destination" [waypoints]="waypoints">
+    </agm-direction>
+  </ng-component>
+</agm-map>
+
+<div class="infoDiv">
+  <div class="supplierDiv" *ngIf="suppliers.length !== 0">
+    <h5>Show clients by supplier</h5>
+    Supplier:
+    <select (change)="showClientsBySupplier($event.target.value)" [(ngModel)]=supplierId>
+      <option *ngFor="let m of suppliers" [value]=m.id|number>{{m.username}}</option>
+
+    </select>
+  </div>
+  <div class="clientsDiv">
+    <h5>Clients</h5>
+    <!-- Supplier: -->
+    <select multiple [(ngModel)]='selectedData' class="clientsOptions">
+      <option *ngFor="let m of markers" value={{m.id|number}}>{{m.username}}</option>
+
+    </select>
+    <button (click)="showRoute()">Show route</button>
+  </div>
+</div>

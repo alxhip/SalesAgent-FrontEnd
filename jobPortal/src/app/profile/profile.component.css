@@ -1,0 +1,14 @@
+/* .ng-invalid.ng-touched:not(form){
+    border-left: 3px solid red;
+}
+
+
+ */
+mat-form-field{
+    width: 400px;
+}
+
+ h1{
+    text-align:center;
+ }
+

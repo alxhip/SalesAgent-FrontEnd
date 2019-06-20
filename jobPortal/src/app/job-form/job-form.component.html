@@ -1,0 +1,9 @@
+<form (ngSubmit)="onSave()" fxLayout="column" fxLayoutAlign="center center" style="width:100%">
+  <mat-form-field>
+    <input type="text" [(ngModel)]="title" name="title" matInput placeholder="Enter Title">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" [(ngModel)]="description" name="description" matInput placeholder="Enter Description">
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">Save</button>
+</form>

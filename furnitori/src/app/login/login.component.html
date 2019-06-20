@@ -1,0 +1,47 @@
+<!-- <h1>Login!</h1>
+<div class="container">
+    <div class="alert alert-warning" *ngIf="invalidLogin == true">Invalid credentials</div>
+    <table>
+        <tr>
+            <td> Username:</td>
+            <td><input type="text" name="username" [(ngModel)]="username"></td>
+        </tr>
+        <tr>
+            <td> Password:</td>
+            <td><input type="password" name="password" [(ngModel)]="password"></td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-success" (click)="authenticateUser()">Login</button></td>
+            <td><button class="btn btn-success" (click)="signupUser()">Signup</button></td>
+        </tr>
+
+    </table>
+</div> -->
+<section id="container" style="margin-top:2cm">
+    <h1>Log in</h1>
+    <form (ngSubmit)="authenticateUser()" fxLayout="column" fxLayoutAlign="center center">
+        <div>
+            <mat-form-field>
+                <input matInput required minlength="3" placeholder="Your username" [(ngModel)]="username"
+                    #usernameInput="ngModel" name="username" class="child" id="username">
+                <mat-error *ngIf="usernameInput.hasError('required')">Username must not be empty!</mat-error>
+                <mat-error *ngIf="!usernameInput.hasError('required')">Username is too short!</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="child" id="password">
+            <mat-form-field>
+                <input type="password" ngModel required minlength="8" matInput placeholder="Your password"
+                    [(ngModel)]="password" name="password" #passInput="ngModel">
+                <mat-hint>Should be at least 8 characters.</mat-hint>
+                <!-- <mat-hint align="end">{{passInput.value?.length}}/8</mat-hint> -->
+                <mat-error>Password is not correct</mat-error>
+            </mat-form-field>
+
+        </div>
+        <div style="margin-top:0.5cm">
+            <button mat-raised-button color="primary" type="submit" id="loginBtn" class="child">Log In</button>
+            <button mat-raised-button type="button" id="signup" class="child" style="margin-left:20px"
+                (click)="signupUser()">Sign Up</button>
+        </div>
+    </form>
+</section>

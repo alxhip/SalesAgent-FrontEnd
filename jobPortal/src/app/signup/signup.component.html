@@ -1,0 +1,64 @@
+<h1>Sign up</h1>
+<div class="alert alert-warning" *ngIf="error">{{errorMessage}}</div>
+<div class="container">
+  <!-- <div class="alert alert-warning" *ngIf="signupForm.dirty && signupForm.invalid">Please enter valid values</div> -->
+  <form (ngSubmit)="signup()" #signupForm="ngForm" class="form-group">
+    <table>
+      <tr>
+        <td>Username:</td>
+        <td><input type="text" class="form-control" ngModel name="username" placeholder="Enter username"
+            required #username="ngModel"></td>
+        <td>
+          <div class="help-block" *ngIf="!username.valid && username.touched">
+            <small class="form-text text-muted text-warning">
+              Username is not correct</small>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" class="form-control" name="name" ngModel #name="ngModel" placeholder="Enter name" required></td>
+        <td>
+          <div class="help-block" *ngIf="!name.valid && name.touched">
+            <small class="form-text text-muted text-warning">
+              Name is not correct</small>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td> <input type="email" class="form-control" ngModel #email="ngModel" name="email" placeholder="Enter email"
+            required email></td>
+        <td>
+          <div class="help-block" *ngIf="!email.valid && email.touched">
+            <small class="form-text text-muted text-warning">
+              Email is not correct</small>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Password </td>
+        <td> <input type="password" minlength="8" class="form-control" ngModel #password="ngModel" name="password"
+            placeholder="Enter password" required></td>
+      </tr>
+      <tr>
+      <tr>
+        <td></td>
+        <td> <input type="password" class="form-control" (input)="checkPasswordValidation()" ngModel #valPassword="ngModel" name="valPassword"
+            placeholder="Re-type password" required></td>
+        <td>
+          <div class="help-block" *ngIf="passError !== null && valPassword.valid" >
+            <small class="form-text text-muted text-warning" >
+              {{passError}}</small>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+         <td> <button type="submit" 
+          [disabled]="signupForm.invalid || passError !== null"  
+          class="btn btn-success">Submit</button> </td>
+      </tr>
+    </table>
+  </form>
+</div>

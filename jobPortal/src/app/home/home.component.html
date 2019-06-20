@@ -1,0 +1,15 @@
+<div class="container">
+  <table class="table">
+
+    <thead class="thead-light">
+      <th>Title</th>
+      <th>Description</th>
+      <th>Published date</th>
+    </thead>
+    <tr *ngFor="let job of jobList">
+      <td> <a routerLink="/jobDetails/{{job.id}}"> {{job.title}} </a></td>
+      <td><a routerLink="/jobDetails/{{job.id}}"> {{job.description}} </a></td>
+      <td>{{job.publishedDate | date}}</td>
+    </tr>
+  </table>
+</div>

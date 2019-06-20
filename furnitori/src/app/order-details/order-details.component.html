@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="category col-sm-4">
+      <mat-form-field>
+        <mat-label>Select category</mat-label>
+        <mat-select (selectionChange)="onCategoryChange($event)" [formControl]="selectedCategory">
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="product col-sm-4">
+      <mat-form-field>
+        <mat-label>Select product</mat-label>
+        <mat-select [formControl]="selectedProduct">
+          <mat-option *ngFor="let product of products" [value]="product">
+            {{product.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="quantity col-sm-3">
+      <mat-form-field>
+        <mat-label>Add quantity</mat-label>
+        <!-- <mat-label>Select product</mat-label> -->
+        <input matInput [formControl]="quantity" type="number" id="quantity">
+      </mat-form-field>
+    </div>
+    <button class="col-sm-1" (click)="onAdd()" mat-raised-button >Add</button>
+    <button  (click)="onOrderSubmit()" mat-raised-button >Submit order</button>
+  </div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of invoiceTable">
+          <td>{{item.product.name}}</td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.total}}</td>
+          <td>Delete</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
