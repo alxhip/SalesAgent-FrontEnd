@@ -3,8 +3,8 @@
 
     <ul class="navbar-nav">
       <li><a class="nav-link" routerLink="home" *ngIf="authenticateUserService.isUserLoggedIn()">Home</a></li>
-      <li *ngIf="userRole != 'Client'"><a class="nav-link" routerLink="clients" *ngIf="authenticateUserService.isUserLoggedIn()">Clients</a></li>
-      <li><a class="nav-link" routerLink="orders" *ngIf="authenticateUserService.isUserLoggedIn()">Orders</a></li>
+      <li ><a class="nav-link" routerLink="clients" *ngIf="authenticateUserService.isUserLoggedIn() && userRole !== 'Client'">Clients</a></li>
+      <li ><a class="nav-link" routerLink="orders" *ngIf="authenticateUserService.isUserLoggedIn() && userRole !== 'Client'">Orders</a></li>
       <li><a class="nav-link" routerLink="profile" *ngIf="authenticateUserService.isUserLoggedIn()">Profile</a></li>
     </ul>
     <ul class="navbar-nav navbar-collapse justify-content-end ">

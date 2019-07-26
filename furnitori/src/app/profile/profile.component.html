@@ -34,6 +34,10 @@
       <mat-error *ngIf="emailInput.hasError('required')">Email is required!</mat-error>
       <mat-error *ngIf="!emailInput.hasError('required')">Please enter a valid email!</mat-error>
     </mat-form-field>
+    <mat-form-field *ngIf="userRole == 'Client'">
+      <input type="text" ngModel [(ngModel)]="nipt" #niptInput="ngModel" matInput placeholder="Nipt" name="nipt" required>
+      <mat-error *ngIf="niptInput.hasError('required')">Nipt is required.</mat-error>
+    </mat-form-field>
     <div style="margin-top:0.5cm">
       <button type="submit" color="primary" mat-raised-button>Update</button>
       <button (click)="onChangePassword()" style="margin-left:20px" type="button"  mat-raised-button>Change password</button>

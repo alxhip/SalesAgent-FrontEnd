@@ -16,13 +16,14 @@ import { HttpInterceptorService } from './service/http-interceptor.service';
 import { ProfileComponent } from './profile/profile.component';
 import { PasswordComponent } from './profile/password/password.component';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { LogoutComponent } from './logout/logout.component';
 import { SignupComponent } from './signup/signup.component';
 import { ClientComponent } from './client/client.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AccessDeniedComponent } from './access-denied/access-denied.component';
+// import { JwtModule } from '@auth0/angular-jwt';
 
 
 
@@ -47,7 +48,7 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    // FlexLayoutModule,
+    FlexLayoutModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCMWfjiLx5K1M1m3fvY6S-dO09_6bqMvWY'
@@ -59,7 +60,8 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
     MatSnackBarModule,
     MatTableModule,
     MatOptionModule,
-    MatSelectModule,
+    MatSelectModule
+    // JwtModule.forRoot({})
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]

@@ -5,7 +5,7 @@ import { Users } from '../shared/users.module';
 import { Router } from '@angular/router';
 import { UiService } from '../service/ui-service.service';
 import { AuthenticateUserService } from '../service/auth/authenticate-user.service';
-import { USER_ID } from '../app.constant';
+import { USER_ID, USER_ROLE } from '../app.constant';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +17,8 @@ export class ProfileComponent implements OnInit {
   username;
   name;
   email;
+  nipt;
+  userRole;
 
   // profileForm: FormGroup;
   currentPass;
@@ -24,7 +26,8 @@ export class ProfileComponent implements OnInit {
   // currentPassError;
 
   constructor(private route: Router, private profileService: RetrieveProfileService,
-              private authenticateUserService: AuthenticateUserService, private uiService: UiService) { }
+    // tslint:disable-next-line: align
+    private authenticateUserService: AuthenticateUserService, private uiService: UiService) { }
 
   ngOnInit() {
     // this.profileForm = new FormGroup({
@@ -33,6 +36,10 @@ export class ProfileComponent implements OnInit {
     //   'email': new FormControl(null, [Validators.required, Validators.email]),
     // })
     const userId = sessionStorage.getItem(USER_ID);
+    const userRole = this.getUserRole();
+    console.log('role' + this.getUserRole());
+
+
     this.profileService.getProfile(userId).subscribe(
       data => {
         // this.profileForm.patchValue({
@@ -43,6 +50,7 @@ export class ProfileComponent implements OnInit {
         this.username = data.username;
         this.name = data.name;
         this.email = data.email;
+        this.nipt = data.nipt;
         this.currentPass = data.password;
       });
   }
@@ -98,4 +106,7 @@ export class ProfileComponent implements OnInit {
     this.route.navigate(['profile/password']);
   }
 
+  getUserRole() {
+    return sessionStorage.getItem(USER_ROLE);
+  }
 }

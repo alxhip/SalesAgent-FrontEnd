@@ -11,7 +11,7 @@ export class RetrieveProfileService {
   constructor(private http: HttpClient) { }
 
   getProfile(id) {
-    return this.http.get<Users>(API_URL + `/api/users/${id}`);
+    return this.http.get<any>(API_URL + `/api/users/${id}`);
   }
 
   saveProfile(user: Users) {

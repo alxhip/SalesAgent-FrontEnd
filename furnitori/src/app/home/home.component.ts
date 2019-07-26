@@ -46,6 +46,9 @@ export class HomeComponent implements OnInit {
 
   // tslint:disable-next-line: max-line-length
   constructor(private activatedRoute: ActivatedRoute, private customerService: CustomerService, private router: Router, private uiService: UiService) {
+    if (this.userRole === 'Client') {
+      this.router.navigate(['orders']);
+    }
     this.userId = sessionStorage.getItem(USER_ID);
 
     this.activatedRoute.params.subscribe(val => {

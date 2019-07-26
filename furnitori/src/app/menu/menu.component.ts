@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { AuthenticateUserService } from '../service/auth/authenticate-user.service';
 import { USER_ROLE } from '../app.constant';
 
@@ -8,12 +8,20 @@ import { USER_ROLE } from '../app.constant';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  private userRole;
 
-  private userRole = sessionStorage.getItem(USER_ROLE);
+  constructor(private authenticateUserService: AuthenticateUserService) {
 
-  constructor(private authenticateUserService: AuthenticateUserService) { }
+  }
 
   ngOnInit() {
+    this.userRole = this.getUserRole();
+    console.log(this.userRole);
+
+
+  }
+  getUserRole() {
+    return sessionStorage.getItem(USER_ROLE);
   }
 
 }

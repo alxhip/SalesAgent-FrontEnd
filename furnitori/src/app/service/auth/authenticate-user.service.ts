@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { API_URL, AUTHENTICATED_USER, TOKEN, USER_ID, USER_ROLE } from '../../app.constant';
 import { DecodeJWTService } from './decode-jwt.service';
+import * as JWT from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class AuthenticateUserService {
             sessionStorage.setItem(USER_ID, userId);
             const userRole = this.decodeJWT.getUserRoleJWT(token);
             sessionStorage.setItem(USER_ROLE, userRole);
-            return data;
+            // return data;
           }
         )
       );
@@ -49,10 +50,6 @@ export class AuthenticateUserService {
     return !(user === null);
   }
 
-  // public isAuthenticated(): boolean {
-  //   const token = sessionStorage.getItem('token');
-  //   return !this.jwtHelper.isTokenExpired(token);
-  // }
 
   logout() {
     // sessionStorage.removeItem(AUTHENTICATED_USER)
@@ -62,5 +59,27 @@ export class AuthenticateUserService {
 
   signup(user) {
     return this.http.post(`${API_URL}/api/auth/signup`, user, { responseType: 'text' });
+  }
+
+  isAuthorized(allowedRoles: string[]): boolean {
+    // check if the list of allowed roles is empty, if empty, authorize the user to access the page
+    if (allowedRoles == null || allowedRoles.length === 0) {
+      return true;
+    }
+
+    // get token from local storage or state management
+    const token = sessionStorage.getItem('token');
+
+    // decode token to read the payload details
+    const decodeToken = this.decodeJWT.getDecodedAccessToken(token);
+
+    // check if it was decoded successfully, if not the token is not valid, deny access
+    if (!decodeToken) {
+      console.log('Invalid token');
+      return false;
+    }
+
+    // check if the user roles is in the list of allowed roles, return true if allowed and false if not allowed
+    return allowedRoles.includes(this.decodeJWT.getUserRoleJWT(decodeToken));
   }
 }

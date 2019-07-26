@@ -18,7 +18,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         }
       });
     }
-    console.log(request);
+    // console.log(request);
 
     return next.handle(request);
   }

@@ -10,7 +10,7 @@ export class DecodeJWTService {
 
   getDecodedAccessToken(token: string): any {
     try {
-      console.log(JWT(token));
+      // console.log(JWT(token));
 
       return JWT(token);
     } catch (Error) {
@@ -20,7 +20,7 @@ export class DecodeJWTService {
 
   getUserIdJWT(token: any) {
     const decodedToken = this.getDecodedAccessToken(token);
-    console.log(decodedToken.scopes[0]);
+    // console.log(decodedToken.scopes[0]);
 
     return decodedToken.jti;
   }

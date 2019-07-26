@@ -14,77 +14,18 @@ import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [RouteGuardService] },
-  { path: 'home', component: HomeComponent, canActivate: [RouteGuardService] },
-  { path: 'profile', component: ProfileComponent, canActivate: [RouteGuardService] },
-{ path: 'login', component: LoginComponent },
-{ path: 'logout', component: LogoutComponent, canActivate: [RouteGuardService] },
-{ path: 'profile/password', component: PasswordComponent, canActivate: [RouteGuardService] },
-{ path: 'home/:supplierId', component: HomeComponent, canActivate: [RouteGuardService] },
-{ path: 'clients', component: ClientComponent, canActivate: [RouteGuardService] },
-{ path: 'orders', component: OrdersComponent, canActivate: [RouteGuardService] },
-{ path: 'newOrder', component: OrderDetailsComponent, canActivate: [RouteGuardService] },
-{ path: 'signup', component: SignupComponent }
+  { path: 'home', component: HomeComponent, canActivate: [RouteGuardService], data: {} },
+  { path: 'home/:supplierId', component: HomeComponent, canActivate: [RouteGuardService] },
+  { path: 'profile', component: ProfileComponent, canActivate: [RouteGuardService], data: {} },
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent, canActivate: [RouteGuardService] },
+  { path: 'profile/password', component: PasswordComponent, canActivate: [RouteGuardService] },
+  { path: 'clients', component: ClientComponent, canActivate: [RouteGuardService], data: { allowedRoles: ['Admin', 'Agent'] } },
+  { path: 'orders', component: OrdersComponent, canActivate: [RouteGuardService], data: {} },
+  { path: 'newOrder', component: OrderDetailsComponent, canActivate: [RouteGuardService], data: { allowedRoles: ['Client'] } },
+  { path: 'signup', component: SignupComponent }
 ];
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     canActivateChild: [RouteGuardService],
-//     children: [
-//       {
-//         path: '', component: HomeComponent, data: {
-//           // allowedRoles: ['Agent', 'Admin', 'Client']
-//         }
-//       },
-//       {
-//         path: 'home', component: HomeComponent, data: {
-//           // allowedRoles: ['Agent', 'Admin', 'Client']
-//         }
-//       },
-//       {
-//         path: 'profile', component: ProfileComponent, data: {
-//           // allowedRoles: ['Agent', 'Admin', 'Client']
-//         }
-//       }, { path: 'login', component: LoginComponent, data: {} },
-//       {
-//         path: 'logout', component: LogoutComponent, data: {
-//           // allowedRoles: ['Agent', 'Admin', 'Client']
-//         }
-//       },
-//       {
-//         path: 'profile/password', component: PasswordComponent, data: {
-//           // allowedRoles: ['Agent', 'Admin', 'Client']
-//         }
-//       },
-//       {
-//         path: 'home/:supplierId', component: HomeComponent, data: {
-//           // allowedRoles: ['Agent', 'Admin', 'Client']
-//         }
-//       },
-//       {
-//         path: 'clients', component: ClientComponent, data: {
-//           // allowedRoles: ['Agent', 'Admin', 'Client']
-//         }
-//       },
-//       {
-//         path: 'orders', component: OrdersComponent, data: {
-//           // allowedRoles: ['Agent', 'Admin', 'Client']
-//         }
-//       },
-//       {
-//         path: 'newOrder', component: OrderDetailsComponent, data: {
-//           // allowedRoles: ['Agent', 'Admin', 'Client']
-//         }
-//       },
-//       { path: 'signup', component: SignupComponent, data: {} },
-//       {
-//         path: 'accessdenied',
-//         component: AccessDeniedComponent,
-//         data: {}
-//       }
-//     ]
-//   }
-// ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
